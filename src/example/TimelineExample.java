@@ -13,6 +13,7 @@ public class TimelineExample {
 		
 		FloatGeneratorConfiguration valueGen = new FloatGeneratorConfiguration();
 		valueGen.initiator = 1000;
+		valueGen.naProbability = 0.01f;
 		
 		TimelineSeries tl = new TimelineSeries(
 				new DateGeneratorConfiguration(), 
@@ -21,7 +22,8 @@ public class TimelineExample {
 		for (int i = 0; i < 100; i++) {
 			TimelineDataPoint dp = tl.next();
 			Date t = dp.getDate();
-			float v = (float) dp.getValue();
+			Float v = (Float) dp.getValue();
+			
 			System.out.println(t.toString() + "\t" + v);
 		}
 		
