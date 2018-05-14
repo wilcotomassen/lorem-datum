@@ -8,11 +8,11 @@ public class GeneratorFactory {
 
 		if (configuration instanceof DateGeneratorConfiguration) {
 			return new DateGenerator((DateGeneratorConfiguration) configuration);
-		} else if (configuration instanceof FloatGeneratorConfiguration) {
+		} /*else if (configuration instanceof FloatGeneratorConfiguration) {
 			return new FloatGenerator((FloatGeneratorConfiguration) configuration);
 		} else if (configuration instanceof IntegerGeneratorConfiguration) {
 			return new IntegerGenerator((IntegerGeneratorConfiguration) configuration);
-		} else {
+		} */ else {
 			throw new Exception("Unrecognized configuration: " + configuration.getClass().getName());
 		}
 		
