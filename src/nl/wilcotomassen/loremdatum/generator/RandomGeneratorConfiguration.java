@@ -5,7 +5,7 @@ public abstract class RandomGeneratorConfiguration extends GeneratorConfiguratio
 	/**
 	 * Seed for the random number generator
 	 */
-	public long seed;
+	public int seed;
 	
 	/**
 	 * Probability of generating a N/A value [0.0, 1.0f] or

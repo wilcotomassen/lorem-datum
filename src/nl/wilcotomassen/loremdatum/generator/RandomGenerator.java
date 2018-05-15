@@ -1,6 +1,7 @@
 package nl.wilcotomassen.loremdatum.generator;
 
-import java.util.Random;
+import org.apache.commons.math3.random.JDKRandomGenerator;
+import org.apache.commons.math3.random.RandomDataGenerator;
 
 /**
  * Generator that contains a random generator, also has the
@@ -8,11 +9,12 @@ import java.util.Random;
  */
 public abstract class RandomGenerator extends Generator {
 	
-	protected Random random;
+//	protected Random random;
+	protected RandomDataGenerator random;
 	
 	public RandomGenerator(RandomGeneratorConfiguration configuration) {
 		super(configuration);
-		random = new Random(configuration.seed);
+		random = new RandomDataGenerator(new JDKRandomGenerator(configuration.seed));
 	}
 	
 	/**
@@ -25,7 +27,7 @@ public abstract class RandomGenerator extends Generator {
 		if (config.naProbability == null) {
 			return false;
 		} else {
-			return random.nextFloat() < config.naProbability;
+			return random.getRandomGenerator().nextFloat() < config.naProbability;
 		}
 	}
 	
