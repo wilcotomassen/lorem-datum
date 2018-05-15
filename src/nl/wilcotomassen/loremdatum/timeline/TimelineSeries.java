@@ -31,7 +31,7 @@ public class TimelineSeries {
 	}
 	
 	public TimelineDataPoint next() {
-		TimelineDataPoint dataPoint = new TimelineDataPoint(dateGenerator.next(), valueGenerator.next());
+		TimelineDataPoint dataPoint = new TimelineDataPoint(dateGenerator.getNext(), valueGenerator.getNext());
 		dataPoints.add(dataPoint);
 		return dataPoint;
 	}
