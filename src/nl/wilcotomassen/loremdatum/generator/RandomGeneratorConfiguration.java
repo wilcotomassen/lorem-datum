@@ -1,7 +1,10 @@
-package nl.wilcotomassen.loremdatum.generator.configuration;
+package nl.wilcotomassen.loremdatum.generator;
 
 public abstract class RandomGeneratorConfiguration extends GeneratorConfiguration {
 	
+	/**
+	 * Seed for the random number generator
+	 */
 	public long seed;
 	
 	/**

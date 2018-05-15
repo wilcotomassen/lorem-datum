@@ -1,7 +1,9 @@
-package nl.wilcotomassen.loremdatum.generator.configuration;
+package nl.wilcotomassen.loremdatum.generator.dates;
 
 import java.util.Calendar;
 import java.util.Date;
+
+import nl.wilcotomassen.loremdatum.generator.GeneratorConfiguration;
 
 public class DateGeneratorConfiguration extends GeneratorConfiguration {
 	

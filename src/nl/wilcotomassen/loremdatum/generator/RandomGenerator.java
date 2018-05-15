@@ -2,8 +2,10 @@ package nl.wilcotomassen.loremdatum.generator;
 
 import java.util.Random;
 
-import nl.wilcotomassen.loremdatum.generator.configuration.RandomGeneratorConfiguration;
-
+/**
+ * Generator that contains a random generator, also has the
+ * ability to generate NA values
+ */
 public abstract class RandomGenerator extends Generator {
 	
 	protected Random random;

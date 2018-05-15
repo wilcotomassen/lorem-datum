@@ -1,9 +1,9 @@
-package nl.wilcotomassen.loremdatum.generator;
+package nl.wilcotomassen.loremdatum.generator.dates;
 
 import java.util.Calendar;
 import java.util.Date;
 
-import nl.wilcotomassen.loremdatum.generator.configuration.DateGeneratorConfiguration;
+import nl.wilcotomassen.loremdatum.generator.Generator;
 
 /**
  * Generator for date (and time) axes
@@ -25,12 +25,12 @@ public class DateGenerator extends Generator {
 	}
 	
 	@Override
-	public Date current() {
+	public Date getCurrent() {
 		return calendar.getTime();
 	}
 	
 	@Override
-	public Date next() {
+	public Date getNext() {
 		
 		//Get configuration
 		DateGeneratorConfiguration configuration = (DateGeneratorConfiguration) getConfiguration();
@@ -39,7 +39,7 @@ public class DateGenerator extends Generator {
 		calendar.add(configuration.intervalUnit.getCalendarUnit(), configuration.intervalValue);
 		
 		// Return current date
-		return current();
+		return getCurrent();
 	}
 	
 }

@@ -2,11 +2,11 @@ package nl.wilcotomassen.loremdatum.timeline;
 
 import java.util.ArrayList;
 
-import nl.wilcotomassen.loremdatum.generator.DateGenerator;
 import nl.wilcotomassen.loremdatum.generator.Generator;
+import nl.wilcotomassen.loremdatum.generator.GeneratorConfiguration;
 import nl.wilcotomassen.loremdatum.generator.GeneratorFactory;
-import nl.wilcotomassen.loremdatum.generator.configuration.DateGeneratorConfiguration;
-import nl.wilcotomassen.loremdatum.generator.configuration.GeneratorConfiguration;
+import nl.wilcotomassen.loremdatum.generator.dates.DateGenerator;
+import nl.wilcotomassen.loremdatum.generator.dates.DateGeneratorConfiguration;
 
 public class TimelineSeries {
 	

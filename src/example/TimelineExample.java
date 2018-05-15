@@ -2,8 +2,8 @@ package example;
 
 import java.util.Date;
 
-import nl.wilcotomassen.loremdatum.generator.configuration.DateGeneratorConfiguration;
-import nl.wilcotomassen.loremdatum.generator.configuration.FloatGeneratorConfiguration;
+import nl.wilcotomassen.loremdatum.generator.dates.DateGeneratorConfiguration;
+import nl.wilcotomassen.loremdatum.generator.numerical.FloatGeneratorConfiguration;
 import nl.wilcotomassen.loremdatum.timeline.TimelineDataPoint;
 import nl.wilcotomassen.loremdatum.timeline.TimelineSeries;
 
@@ -14,6 +14,7 @@ public class TimelineExample {
 		FloatGeneratorConfiguration valueGen = new FloatGeneratorConfiguration();
 		valueGen.initiator = 1000;
 		valueGen.naProbability = 0.01f;
+		
 		
 		TimelineSeries tl = new TimelineSeries(
 				new DateGeneratorConfiguration(), 

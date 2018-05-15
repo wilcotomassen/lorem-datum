@@ -1,9 +1,10 @@
 package nl.wilcotomassen.loremdatum.generator;
 
-import nl.wilcotomassen.loremdatum.generator.configuration.GeneratorConfiguration;
-
 public abstract class Generator {
 	
+	/**
+	 * The configuration for this generator
+	 */
 	private GeneratorConfiguration configuration;
 	
 	/**
@@ -11,7 +12,7 @@ public abstract class Generator {
 	 * 
 	 * @param configuration
 	 */
-	public Generator(GeneratorConfiguration configuration) {
+ 	public Generator(GeneratorConfiguration configuration) {
 		this.configuration = configuration;
 	}
 	
@@ -29,13 +30,13 @@ public abstract class Generator {
 	 * 
 	 * @return
 	 */
-	public abstract Object current();
+	public abstract Object getCurrent();
 
 	/**
 	 * Update the current value
 	 * 
 	 * @return
 	 */
-	public abstract Object next();
+	public abstract Object getNext();
 
 }

@@ -1,47 +1,35 @@
-package nl.wilcotomassen.loremdatum.generator;
+package nl.wilcotomassen.loremdatum.generator.numerical;
 
-import nl.wilcotomassen.loremdatum.generator.configuration.DoubleGeneratorConfiguration;
+import nl.wilcotomassen.loremdatum.generator.RandomGenerator;
 
 /**
- * Class for generating numerical values (in double precision) that acts
- * as a base class for other numerical generators.
- * 
- * Classes using this base class are {@link DoubleGenerator}, 
- * {@link FloatGenerator} and {@link IntegerGenerator}
+ * Numerical data generator of 64-bit signed integer values
  */
-public abstract class NumericalGenerator extends RandomGenerator {
+public class LongGenerator extends RandomGenerator {
 	
 	/**
 	 * The current (last generated) value, which can be null (NA)
 	 */
-	private Double currentValue;
+	private Long currentValue;
 	
 	/**
 	 * The last generated value that wasn't NA (can't be null)
 	 */
 	private double lastDataValue;
-
-	public NumericalGenerator(DoubleGeneratorConfiguration configuration) {
+	
+	public LongGenerator(LongGeneratorConfiguration configuration) {
 		super(configuration);
 		currentValue = configuration.initiator;
 		lastDataValue = currentValue;
 	}
 	
-	/**
-	 * Get the current (last generated) value
-	 * 
-	 * @return
-	 */
-	protected Double getCurrent() {
-		return currentValue;
+	@Override
+	public Long getCurrent() {
+		return currentValue; 
 	}
 
-	/**
-	 * Generate a new value and return it
-	 * 
-	 * @return
-	 */
-	protected Double getNext() {
+	@Override
+	public Long getNext() {
 		
 		// Check if we should generate a N/A value
 		if (tryForNA()) {
@@ -49,8 +37,8 @@ public abstract class NumericalGenerator extends RandomGenerator {
 		} else {
 		
 			// Retrieve configuration
-			DoubleGeneratorConfiguration configuration = 
-					(DoubleGeneratorConfiguration) getConfiguration();
+			LongGeneratorConfiguration configuration = 
+					(LongGeneratorConfiguration) getConfiguration();
 			
 			// Define random variation (based on on current value)
 			double variationRange = (configuration.variationUpperBound - configuration.variationLowerBound); 
@@ -59,7 +47,7 @@ public abstract class NumericalGenerator extends RandomGenerator {
 			double variation = lastDataValue * variationMultiplier;
 			
 			// Calculate new value
-			double newValue = lastDataValue + variation;
+			long newValue = (long) Math.round((double) lastDataValue + variation);
 					
 			// Limit new value to configured value bounds
 			if (configuration.valueLowerBound != null) {
@@ -78,5 +66,5 @@ public abstract class NumericalGenerator extends RandomGenerator {
 		return getCurrent();
 		
 	}
-
+	
 }
