@@ -8,7 +8,6 @@
 	<name>Lorem datum</name>
 	<description>Random data generator</description>
 	<build>
-		<sourceDirectory>src</sourceDirectory>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -25,6 +24,12 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-math3</artifactId>
 			<version>3.6.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>6.14.3</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 </project>

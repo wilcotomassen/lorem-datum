@@ -73,7 +73,7 @@ public class FloatGeneratorConfiguration extends NumericalGeneratorConfiguration
 		 * @param valueUpperBound the upper bound of the generated values (inclusive) or null for no upper bound
 		 * @return updated Builder
 		 */
-		public T variationUpperBound(Float valueUpperBound) {
+		public T valueUpperBound(Float valueUpperBound) {
 			this.valueUpperBound = valueUpperBound;
 			return self();
 		}
