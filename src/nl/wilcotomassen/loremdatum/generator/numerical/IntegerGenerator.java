@@ -42,8 +42,8 @@ public class IntegerGenerator extends RandomGenerator {
 			
 			// Define random variation (based on on current value)
 			double variationMultiplier = random.nextUniform(
-					configuration.variationLowerBound, 
-					configuration.variationUpperBound);
+					configuration.getVariationLowerBound(), 
+					configuration.getVariationUpperBound());
 			double variation = (double) lastDataValue * variationMultiplier;
 			
 			// Calculate new value (casting to double might lead to some imprecision)
