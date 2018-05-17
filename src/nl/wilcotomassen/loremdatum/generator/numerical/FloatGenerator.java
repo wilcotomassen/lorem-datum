@@ -1,6 +1,7 @@
 package nl.wilcotomassen.loremdatum.generator.numerical;
 
 import nl.wilcotomassen.loremdatum.generator.RandomGenerator;
+import nl.wilcotomassen.loremdatum.generator.numerical.FloatGeneratorConfiguration.ConfigurationBuilder;
 
 /**
  * Numerical data generator of floating point values with single
@@ -43,8 +44,8 @@ public class FloatGenerator extends RandomGenerator {
 			
 			// Define random variation (based on on current value)
 			double variationMultiplier = random.nextUniform(
-					configuration.getVariationLowerBound(), 
-					configuration.getVariationUpperBound());
+					configuration.variationLowerBound, 
+					configuration.variationUpperBound);
 			float variation = (float) (lastDataValue * variationMultiplier);
 			
 			// Calculate new value
@@ -66,6 +67,15 @@ public class FloatGenerator extends RandomGenerator {
 		
 		return getCurrent();
 		
+	}
+	
+	/**
+	 * Get a configuration builder for this generator
+	 * 
+	 * @return a configuration builder for this generator
+	 */
+	public static ConfigurationBuilder<?> builder() {
+		return FloatGeneratorConfiguration.builder();
 	}
 	
 }

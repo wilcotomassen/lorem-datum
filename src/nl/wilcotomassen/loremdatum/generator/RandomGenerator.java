@@ -9,11 +9,12 @@ import org.apache.commons.math3.random.RandomDataGenerator;
  */
 public abstract class RandomGenerator extends Generator {
 	
-//	protected Random random;
 	protected RandomDataGenerator random;
 	
 	public RandomGenerator(RandomGeneratorConfiguration configuration) {
 		super(configuration);
+		
+		// Setup random generator
 		random = new RandomDataGenerator(new JDKRandomGenerator(configuration.seed));
 	}
 	

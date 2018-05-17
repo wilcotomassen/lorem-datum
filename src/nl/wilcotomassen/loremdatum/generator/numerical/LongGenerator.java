@@ -1,6 +1,7 @@
 package nl.wilcotomassen.loremdatum.generator.numerical;
 
 import nl.wilcotomassen.loremdatum.generator.RandomGenerator;
+import nl.wilcotomassen.loremdatum.generator.numerical.LongGeneratorConfiguration.ConfigurationBuilder;
 
 /**
  * Numerical data generator of 64-bit signed integer values
@@ -42,8 +43,8 @@ public class LongGenerator extends RandomGenerator {
 			
 			// Define random variation (based on on current value)
 			double variationMultiplier = random.nextUniform(
-					configuration.getVariationLowerBound(), 
-					configuration.getVariationUpperBound());
+					configuration.variationLowerBound, 
+					configuration.variationUpperBound);
 			double variation = lastDataValue * variationMultiplier;
 			
 			// Calculate new value (casting to double might lead to some imprecision)
@@ -65,6 +66,15 @@ public class LongGenerator extends RandomGenerator {
 		
 		return getCurrent();
 		
+	}
+	
+	/**
+	 * Get a configuration builder for this generator
+	 * 
+	 * @return a configuration builder for this generator
+	 */
+	public static ConfigurationBuilder<?> builder() {
+		return LongGeneratorConfiguration.builder();
 	}
 	
 }

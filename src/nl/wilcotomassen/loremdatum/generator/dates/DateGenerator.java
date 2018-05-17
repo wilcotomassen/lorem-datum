@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import nl.wilcotomassen.loremdatum.generator.Generator;
+import nl.wilcotomassen.loremdatum.generator.dates.DateGeneratorConfiguration.ConfigurationBuilder;
 
 /**
  * Generator for date (and time) axes
@@ -40,6 +41,15 @@ public class DateGenerator extends Generator {
 		
 		// Return current date
 		return getCurrent();
+	}
+	
+	/**
+	 * Get a configuration builder for this generator
+	 * 
+	 * @return a configuration builder for this generator
+	 */
+	public static ConfigurationBuilder<?> builder() {
+		return DateGeneratorConfiguration.builder();
 	}
 	
 }

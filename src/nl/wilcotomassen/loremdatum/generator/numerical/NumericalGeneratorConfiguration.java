@@ -9,57 +9,75 @@ public abstract class NumericalGeneratorConfiguration extends RandomGeneratorCon
 	 * values relative to the last generator value in double
 	 * precision. Range is [-1.0, 0.0]
 	 */
-	private double variationLowerBound = -.1;
+	public final double variationLowerBound;
 	
 	/**
 	 * The upper bound for the variation of the generated
 	 * values relative to the last generator value in double
 	 * precision. Range is [0.0, 1.0]
 	 */
-	private double variationUpperBound = +.1;
+	public final double variationUpperBound;
 	
 	/**
-	 * Set the lower bound for the variation of the generated
-	 * values relative to the last generator value in double
-	 * precision. The supplied value is clamped to [-1.0, 0.0]
+	 * Instantiate GeneratorConfiguration
 	 * 
-	 * @param v Upper bound of the value generation variation [-1.0, 0.0]
+	 * @param builder
 	 */
-	public final void setVariationLowerBound(double v) {
-		variationLowerBound = Math.max(-1, Math.min(0, v));
+	protected NumericalGeneratorConfiguration(ConfigurationBuilder<?> builder) {
+		super(builder);
+		this.variationLowerBound = builder.variationLowerBound;
+		this.variationUpperBound = builder.variationUpperBound;
 	}
 	
 	/**
-	 * Get the lower bound for the variation of the generated
-	 * values relative to the last generator value in double
-	 * precision. Range is [-1.0, 0.0]
+	 * Create a builder for this Configuration
 	 * 
-	 * @return
+	 * @return a builder for this Configuration
 	 */
-	public final double getVariationLowerBound() {
-		return variationLowerBound;
+	public static ConfigurationBuilder<?> builder() {
+		return new NumericalGeneratorConfigurationBuilder();
 	}
 	
 	/**
-	 * Set the upper bound for the variation of the generated
-	 * values relative to the last generator value in double
-	 * precision. The supplied value is clamped to [0, 1]
-	 * 
-	 * @param v Upper bound of the value generation variation [0, 1]
+	 * Abstract ConfigurationBuilder
 	 */
-	public final void setVariationUpperBound(double v) {
-		variationUpperBound = Math.max(0, Math.min(1, v));
-	}
-	
-	/**
-	 * Get the upper bound for the variation of the generated
-	 * values relative to the last generator value in double
-	 * precision. Range is [0.0, 1.0]
-	 *
-	 * @return
-	 */
-	public final double getVariationUpperBound() {
-		return variationUpperBound;
-	}
+	public static abstract class ConfigurationBuilder<T extends ConfigurationBuilder<T>>
+			extends RandomGeneratorConfiguration.ConfigurationBuilder<T> {
 
+		private double variationLowerBound = -.1;
+		private double variationUpperBound = +.1;
+		
+		protected abstract T self();
+
+		/**
+		 * @param variationLowerBound the lower bound of the value generation variation [-1.0, 0.0]
+		 * @return updated Builder
+		 */
+		public T variationLowerBound(double variationLowerBound) {
+			this.variationLowerBound = variationLowerBound;
+			return self();
+		}
+		
+		/**
+		 * @param variationUpperBound the upper bound of the value generation variation [0.0, 1.0]
+		 * @return updated Builder
+		 */
+		public T variationUpperBound(double variationUpperBound) {
+			this.variationUpperBound = variationUpperBound;
+			return self();
+		}
+		
+	}
+		
+	/**
+	 * Implementation of the ConfigurationBuilder for this class
+	 */
+	private static class NumericalGeneratorConfigurationBuilder
+			extends ConfigurationBuilder<NumericalGeneratorConfigurationBuilder> {
+		@Override
+		protected NumericalGeneratorConfigurationBuilder self() {
+			return this;
+		}
+	}
+	
 }
