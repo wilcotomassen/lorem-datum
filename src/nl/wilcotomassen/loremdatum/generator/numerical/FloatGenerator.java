@@ -43,8 +43,8 @@ public class FloatGenerator extends RandomGenerator {
 			
 			// Define random variation (based on on current value)
 			double variationMultiplier = random.nextUniform(
-					configuration.variationUpperBound, 
-					configuration.variationLowerBound);
+					configuration.variationLowerBound, 
+					configuration.variationUpperBound);
 			float variation = (float) (lastDataValue * variationMultiplier);
 			
 			// Calculate new value

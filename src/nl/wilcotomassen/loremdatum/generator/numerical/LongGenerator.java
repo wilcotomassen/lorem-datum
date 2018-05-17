@@ -42,11 +42,11 @@ public class LongGenerator extends RandomGenerator {
 			
 			// Define random variation (based on on current value)
 			double variationMultiplier = random.nextUniform(
-					configuration.variationUpperBound, 
-					configuration.variationLowerBound);
+					configuration.variationLowerBound, 
+					configuration.variationUpperBound);
 			double variation = lastDataValue * variationMultiplier;
 			
-			// Calculate new value
+			// Calculate new value (casting to double might lead to some imprecision)
 			long newValue = (long) Math.round((double) lastDataValue + variation);
 					
 			// Limit new value to configured value bounds
