@@ -9,13 +9,21 @@ public class LongGeneratorConfiguration extends NumericalGeneratorConfiguration 
 	 * Initial value to generate values from
 	 */
 	public final long initiator;
+	public static final long INITIATOR_DEFAULT = 100; 
 	
 	/**
-	 * Absolute limits of generated values (inclusive), or null 
+	 * Absolute lower limit of generated value (inclusive), or null 
 	 * if without limits 
 	 */
 	public final Long valueLowerBound;
+	public static final Long VALUE_LOWER_BOUND_DEFAULT = null;
+	
+	/**
+	 * Absolute upper limit of generated value (inclusive), or null 
+	 * if without limits 
+	 */
 	public final Long valueUpperBound;
+	public static final Long VALUE_UPPER_BOUND_DEFAULT = null;
 	
 	/**
 	 * Instantiate GeneratorConfiguration
@@ -44,9 +52,9 @@ public class LongGeneratorConfiguration extends NumericalGeneratorConfiguration 
 	public static abstract class ConfigurationBuilder<T extends ConfigurationBuilder<T>>
 			extends NumericalGeneratorConfiguration.ConfigurationBuilder<T> {
 
-		private long initiator = 100;
-		private Long valueLowerBound = null;
-		private Long valueUpperBound = null;
+		private long initiator = INITIATOR_DEFAULT;
+		private Long valueLowerBound = VALUE_LOWER_BOUND_DEFAULT;
+		private Long valueUpperBound = VALUE_UPPER_BOUND_DEFAULT;
 		
 		protected abstract T self();
 		
@@ -64,6 +72,9 @@ public class LongGeneratorConfiguration extends NumericalGeneratorConfiguration 
 		 * @return updated Builder
 		 */
 		public T valueLowerBound(Long valueLowerBound) {
+			if (valueLowerBound != null && valueUpperBound != null && valueLowerBound >= valueUpperBound) {
+				throw new IllegalArgumentException("Value lower bound should be smaller than value upper bound");
+			}
 			this.valueLowerBound = valueLowerBound;
 			return self();
 		}
@@ -72,7 +83,10 @@ public class LongGeneratorConfiguration extends NumericalGeneratorConfiguration 
 		 * @param valueUpperBound the upper bound of the generated values (inclusive) or null for no upper bound
 		 * @return updated Builder
 		 */
-		public T variationUpperBound(Long valueUpperBound) {
+		public T valueUpperBound(Long valueUpperBound) {
+			if (valueLowerBound != null && valueUpperBound != null && valueUpperBound <= valueLowerBound) {
+				throw new IllegalArgumentException("Value upper bound should be greater than value lower bound");
+			}
 			this.valueUpperBound = valueUpperBound;
 			return self();
 		}

@@ -3,15 +3,15 @@ package nl.wilcotomassen.loremdatum.generator.numerical;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class IntegerGeneratorConfigurationTest extends NumericalGeneratorConfigurationTest {
+public class LongGeneratorConfigurationTest extends NumericalGeneratorConfigurationTest {
 	
 	/**
-	 * Get default IntegerGeneratorConfiguration
+	 * Get default LongGeneratorConfiguration
 	 * 
 	 * @return
 	 */
-	protected IntegerGeneratorConfiguration getIntegerConfiguration() {
-		return IntegerGeneratorConfiguration.builder().buildConfiguration();
+	protected LongGeneratorConfiguration getIntegerConfiguration() {
+		return LongGeneratorConfiguration.builder().buildConfiguration();
 	}
 	
 	@Override
@@ -22,8 +22,8 @@ public class IntegerGeneratorConfigurationTest extends NumericalGeneratorConfigu
 			Double variationUpperBound
 			) {
 		
-		IntegerGeneratorConfiguration.ConfigurationBuilder<?> configurationBuilder = 
-				IntegerGeneratorConfiguration.builder();
+		LongGeneratorConfiguration.ConfigurationBuilder<?> configurationBuilder = 
+				LongGeneratorConfiguration.builder();
 		
 		if (seed != null) {
 			configurationBuilder.seed(seed);
@@ -42,16 +42,16 @@ public class IntegerGeneratorConfigurationTest extends NumericalGeneratorConfigu
 	
 	@Test
 	public final void testInitiatorDefaultValue() {
-		Assert.assertEquals(getIntegerConfiguration().initiator, IntegerGeneratorConfiguration.INITIATOR_DEFAULT);
+		Assert.assertEquals(getIntegerConfiguration().initiator, LongGeneratorConfiguration.INITIATOR_DEFAULT);
 	}
 	
 	@Test
 	public final void testInitiatorSetter() {
-		final int[] TEST_VALUES = {Integer.MIN_VALUE, -2, -1, 0, 1, 2, Integer.MAX_VALUE};
+		final long[] TEST_VALUES = {Long.MIN_VALUE, -2, -1, 0, 1, 2, Long.MAX_VALUE};
 		for (int i = 0; i < TEST_VALUES.length; i++) {
-			final int testValue = TEST_VALUES[i];
+			final long testValue = TEST_VALUES[i];
 			
-			IntegerGeneratorConfiguration configuration = IntegerGeneratorConfiguration.builder()
+			LongGeneratorConfiguration configuration = LongGeneratorConfiguration.builder()
 					.initiator(testValue)
 					.buildConfiguration();
 			
@@ -67,15 +67,15 @@ public class IntegerGeneratorConfigurationTest extends NumericalGeneratorConfigu
 	
 	@Test
 	public final void testValueLowerBoundSetter() {
-		final int[] TEST_VALUES = {Integer.MIN_VALUE, -2, -1, 0, 1, 2, Integer.MAX_VALUE};
+		final long[] TEST_VALUES = {Long.MIN_VALUE, -2, -1, 0, 1, 2, Long.MAX_VALUE};
 		for (int i = 0; i < TEST_VALUES.length; i++) {
-			final int testValue = TEST_VALUES[i];
+			final long testValue = TEST_VALUES[i];
 			
-			IntegerGeneratorConfiguration configuration = IntegerGeneratorConfiguration.builder()
+			LongGeneratorConfiguration configuration = LongGeneratorConfiguration.builder()
 					.valueLowerBound(testValue)
 					.buildConfiguration();
 			
-			Assert.assertEquals((Integer) configuration.valueLowerBound, (Integer) testValue);
+			Assert.assertEquals((Long) configuration.valueLowerBound, (Long) testValue);
 			
 		}
 	}
@@ -87,15 +87,15 @@ public class IntegerGeneratorConfigurationTest extends NumericalGeneratorConfigu
 	
 	@Test
 	public final void testValueUpperBoundSetter() {
-		final int[] TEST_VALUES = {Integer.MIN_VALUE, -2, -1, 0, 1, 2, Integer.MAX_VALUE};
+		final long[] TEST_VALUES = {Long.MIN_VALUE, -2, -1, 0, 1, 2, Long.MAX_VALUE};
 		for (int i = 0; i < TEST_VALUES.length; i++) {
-			final int testValue = TEST_VALUES[i];
+			final long testValue = TEST_VALUES[i];
 			
-			IntegerGeneratorConfiguration configuration = IntegerGeneratorConfiguration.builder()
+			LongGeneratorConfiguration configuration = LongGeneratorConfiguration.builder()
 					.valueUpperBound(testValue)
 					.buildConfiguration();
 			
-			Assert.assertEquals((Integer) configuration.valueUpperBound, (Integer) testValue);
+			Assert.assertEquals((Long) configuration.valueUpperBound, (Long) testValue);
 			
 		}
 	}
@@ -104,15 +104,15 @@ public class IntegerGeneratorConfigurationTest extends NumericalGeneratorConfigu
 	public final void testInvalidBoundsCombination() {
 		
 		// Upper bound lower then previously set lower bound
-		Assert.assertThrows(IllegalArgumentException.class, () -> IntegerGeneratorConfiguration.builder()
-				.valueLowerBound(10)
-				.valueUpperBound(5)
+		Assert.assertThrows(IllegalArgumentException.class, () -> LongGeneratorConfiguration.builder()
+				.valueLowerBound(10L)
+				.valueUpperBound(5L)
 				.buildConfiguration());
 		
 		// Lower bound higher than previously set upper bound
-		Assert.assertThrows(IllegalArgumentException.class, () -> IntegerGeneratorConfiguration.builder()
-				.valueUpperBound(5)
-				.valueLowerBound(10)
+		Assert.assertThrows(IllegalArgumentException.class, () -> LongGeneratorConfiguration.builder()
+				.valueUpperBound(5L)
+				.valueLowerBound(10L)
 				.buildConfiguration());
 		
 	}
