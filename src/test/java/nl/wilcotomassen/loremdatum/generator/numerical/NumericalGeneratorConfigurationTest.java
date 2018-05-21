@@ -98,11 +98,11 @@ public abstract class NumericalGeneratorConfigurationTest extends RandomGenerato
 		}
 	}
 
-	@Test(expectedExceptions = IllegalArgumentException.class)
+	@Test
 	public final void testVariationLowerBoundsWithInvalidValues() {
 		for (int i = 0; i < VARIATION_LOWER_BOUND_INVALID_TEST_VALUES.length; i++) {
 			final double testValue = VARIATION_LOWER_BOUND_INVALID_TEST_VALUES[i];
-			getNumericalConfiguration(null, null, testValue, null);
+			Assert.assertThrows(IllegalArgumentException.class, () -> getNumericalConfiguration(null, null, testValue, null));
 		}
 	}
 	
@@ -119,11 +119,12 @@ public abstract class NumericalGeneratorConfigurationTest extends RandomGenerato
 		}
 	}
 	
-	@Test(expectedExceptions = IllegalArgumentException.class)
+	@Test
 	public final void testVariationUpperBoundWithInvalidValues() {
 		for (int i = 0; i < VARIATION_UPPER_BOUND_INVALID_TEST_VALUES.length; i++) {
 			final double testValue = VARIATION_UPPER_BOUND_INVALID_TEST_VALUES[i];
 			getNumericalConfiguration(null, null, null, testValue);
+			Assert.assertThrows(IllegalArgumentException.class, () -> getNumericalConfiguration(null, null, null, testValue));
 		}
 	}
 	
