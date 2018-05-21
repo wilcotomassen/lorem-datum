@@ -9,13 +9,21 @@ public class DoubleGeneratorConfiguration extends NumericalGeneratorConfiguratio
 	 * Initial value to generate values from
 	 */
 	public final double initiator;
+	public static final float INITIATOR_DEFAULT = 100; 
 	
 	/**
-	 * Absolute limits of generated values (inclusive), or null 
+	 * Absolute lower limit of generated value (inclusive), or null 
 	 * if without limits 
 	 */
 	public final Double valueLowerBound;
+	public static final Double VALUE_LOWER_BOUND_DEFAULT = null;
+	
+	/**
+	 * Absolute upper limit of generated value (inclusive), or null 
+	 * if without limits 
+	 */
 	public final Double valueUpperBound;
+	public static final Double VALUE_UPPER_BOUND_DEFAULT = null;
 	
 	/**
 	 * Instantiate GeneratorConfiguration
@@ -44,9 +52,9 @@ public class DoubleGeneratorConfiguration extends NumericalGeneratorConfiguratio
 	public static abstract class ConfigurationBuilder<T extends ConfigurationBuilder<T>>
 			extends NumericalGeneratorConfiguration.ConfigurationBuilder<T> {
 
-		private double initiator = 100;
-		private Double valueLowerBound = null;
-		private Double valueUpperBound = null;
+		private double initiator = INITIATOR_DEFAULT;
+		private Double valueLowerBound = VALUE_LOWER_BOUND_DEFAULT;
+		private Double valueUpperBound = VALUE_UPPER_BOUND_DEFAULT;
 		
 		protected abstract T self();
 		
@@ -64,6 +72,9 @@ public class DoubleGeneratorConfiguration extends NumericalGeneratorConfiguratio
 		 * @return updated Builder
 		 */
 		public T valueLowerBound(Double valueLowerBound) {
+			if (valueLowerBound != null && valueUpperBound != null && valueLowerBound >= valueUpperBound) {
+				throw new IllegalArgumentException("Value lower bound should be smaller than value upper bound");
+			}
 			this.valueLowerBound = valueLowerBound;
 			return self();
 		}
@@ -72,7 +83,10 @@ public class DoubleGeneratorConfiguration extends NumericalGeneratorConfiguratio
 		 * @param valueUpperBound the upper bound of the generated values (inclusive) or null for no upper bound
 		 * @return updated Builder
 		 */
-		public T variationUpperBound(Double valueUpperBound) {
+		public T valueUpperBound(Double valueUpperBound) {
+			if (valueLowerBound != null && valueUpperBound != null && valueUpperBound <= valueLowerBound) {
+				throw new IllegalArgumentException("Value upper bound should be greater than value lower bound");
+			}
 			this.valueUpperBound = valueUpperBound;
 			return self();
 		}
