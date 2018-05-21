@@ -58,7 +58,7 @@ public abstract class RandomGeneratorConfiguration extends GeneratorConfiguratio
 		 * @return updated Builder
 		 */
 		public T naProbability(Float naProbability) {
-			if (naProbability != null && (naProbability < 0.0 || naProbability > 1.0)) {
+			if (naProbability != null && (naProbability < 0.0 || naProbability > 1.0 || naProbability.isNaN())) {
 				throw new IllegalArgumentException(String.format("Invalid naProbability value: '%g'. Valid values is null or the range [0.0, 1.0]", naProbability));
 			}
 			this.naProbability = naProbability;

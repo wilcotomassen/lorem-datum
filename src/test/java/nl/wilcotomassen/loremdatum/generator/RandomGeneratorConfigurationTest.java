@@ -12,7 +12,7 @@ public abstract class RandomGeneratorConfigurationTest {
 	public final static Float[] NAPROBABILITY_VALID_TEST_VALUES = { 
 		0.0f, // Smallest allowed value
 		Float.MIN_NORMAL, .0001f, 0.001f, 0.01f, 0.1f, // Range of allowed values 
-		1.0f, // Greatest allowed value
+		(1.0f + Float.MIN_VALUE), 1.0f, // Greatest allowed value
 		null // null
 	}; 
 	
@@ -21,7 +21,7 @@ public abstract class RandomGeneratorConfigurationTest {
 	 */
 	public final static Float[] NAPROBABILITY_INVALID_TEST_VALUES = { 
 		Float.NaN, Float.NEGATIVE_INFINITY, Float.POSITIVE_INFINITY, // NaN and infinity
-		1.0f + Float.MIN_VALUE, -Float.MIN_VALUE, // Smallest out of bound values
+		-Float.MIN_VALUE, // Smallest out of bound values
 		-.0001f, -0.001f, -0.01f, -0.1f, -1.0f // Negative values 
 	};
 	
@@ -72,11 +72,11 @@ public abstract class RandomGeneratorConfigurationTest {
 		}
 	}
 	
-	@Test(expectedExceptions = IllegalArgumentException.class)
+	@Test
 	public final void testNaProbabilitySetterWithInvalidValues() {
 		for (int i = 0; i < NAPROBABILITY_INVALID_TEST_VALUES.length; i++) {
 			final float testValue = NAPROBABILITY_INVALID_TEST_VALUES[i];
-			testNaProbabilityEquals(getRandomConfiguration(null, testValue), testValue);
+			Assert.assertThrows(IllegalArgumentException.class, () -> getRandomConfiguration(null, testValue));
 		}
 	}
 }
