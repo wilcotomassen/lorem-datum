@@ -56,6 +56,9 @@ public abstract class NumericalGeneratorConfiguration extends RandomGeneratorCon
 		 * @return updated Builder
 		 */
 		public T variationLowerBound(double variationLowerBound) {
+			if (variationLowerBound < -1.0 || variationLowerBound > 0.0) {
+				throw new IllegalArgumentException(String.format("Invalid variation lower bound value: '%g'. Valid range is [-1.0, 0,0]", variationLowerBound));
+			}
 			this.variationLowerBound = variationLowerBound;
 			return self();
 		}
@@ -65,6 +68,9 @@ public abstract class NumericalGeneratorConfiguration extends RandomGeneratorCon
 		 * @return updated Builder
 		 */
 		public T variationUpperBound(double variationUpperBound) {
+			if (variationUpperBound < 0.0 || variationUpperBound > 1.0) {
+				throw new IllegalArgumentException(String.format("Invalid variation upper bound value: '%g'. Valid range is [0.0, 1,0]", variationUpperBound));
+			}
 			this.variationUpperBound = variationUpperBound;
 			return self();
 		}
