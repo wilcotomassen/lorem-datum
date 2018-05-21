@@ -9,13 +9,21 @@ public class IntegerGeneratorConfiguration extends NumericalGeneratorConfigurati
 	 * Initial value to generate values from
 	 */
 	public final int initiator;
+	public static final int INITIATOR_DEFAULT = 100; 
 	
 	/**
-	 * Absolute limits of generated values (inclusive), or null if without
-	 * limits  
+	 * Absolute lower limit of generated value (inclusive), or null 
+	 * if without limits 
 	 */
 	public final Integer valueLowerBound;
+	public static final Integer VALUE_LOWER_BOUND_DEFAULT = null;
+	
+	/**
+	 * Absolute upper limit of generated value (inclusive), or null 
+	 * if without limits 
+	 */
 	public final Integer valueUpperBound;
+	public static final Integer VALUE_UPPER_BOUND_DEFAULT = null;
 	
 	/**
 	 * Instantiate GeneratorConfiguration
@@ -44,9 +52,9 @@ public class IntegerGeneratorConfiguration extends NumericalGeneratorConfigurati
 	public static abstract class ConfigurationBuilder<T extends ConfigurationBuilder<T>>
 			extends NumericalGeneratorConfiguration.ConfigurationBuilder<T> {
 
-		private int initiator = 100;
-		private Integer valueLowerBound = null;
-		private Integer valueUpperBound = null;
+		private int initiator = INITIATOR_DEFAULT;
+		private Integer valueLowerBound = VALUE_LOWER_BOUND_DEFAULT;
+		private Integer valueUpperBound = VALUE_UPPER_BOUND_DEFAULT;
 		
 		protected abstract T self();
 		
@@ -64,6 +72,9 @@ public class IntegerGeneratorConfiguration extends NumericalGeneratorConfigurati
 		 * @return updated Builder
 		 */
 		public T valueLowerBound(Integer valueLowerBound) {
+			if (valueLowerBound != null && valueUpperBound != null && valueLowerBound >= valueUpperBound) {
+				throw new IllegalArgumentException("Value lower bound should be smaller than value upper bound");
+			}
 			this.valueLowerBound = valueLowerBound;
 			return self();
 		}
@@ -72,7 +83,10 @@ public class IntegerGeneratorConfiguration extends NumericalGeneratorConfigurati
 		 * @param valueUpperBound the upper bound of the generated values (inclusive) or null for no upper bound
 		 * @return updated Builder
 		 */
-		public T variationUpperBound(Integer valueUpperBound) {
+		public T valueUpperBound(Integer valueUpperBound) {
+			if (valueLowerBound != null && valueUpperBound != null && valueUpperBound <= valueLowerBound) {
+				throw new IllegalArgumentException("Value upper bound should be greater than value lower bound");
+			}
 			this.valueUpperBound = valueUpperBound;
 			return self();
 		}
