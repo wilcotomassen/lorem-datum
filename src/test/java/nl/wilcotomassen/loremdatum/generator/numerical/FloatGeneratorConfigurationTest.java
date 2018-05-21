@@ -82,7 +82,19 @@ public class FloatGeneratorConfigurationTest extends NumericalGeneratorConfigura
 	
 	@Test
 	public final void testInvalidBoundsCombination() {
-		//@TODO
+		
+		// Upper bound lower then previously set lower bound
+		Assert.assertThrows(IllegalArgumentException.class, () -> FloatGeneratorConfiguration.builder()
+				.valueLowerBound(10f)
+				.valueUpperBound(5f)
+				.buildConfiguration());
+		
+		// Lower bound higher than previously set upper bound
+		Assert.assertThrows(IllegalArgumentException.class, () -> FloatGeneratorConfiguration.builder()
+				.valueUpperBound(5f)
+				.valueLowerBound(10f)
+				.buildConfiguration());
+		
 	}
 	
 }

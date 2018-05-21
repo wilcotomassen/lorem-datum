@@ -26,8 +26,8 @@ public abstract class NumericalGeneratorConfigurationTest extends RandomGenerato
 	 */
 	public final static double[] VARIATION_LOWER_BOUND_INVALID_TEST_VALUES = { 
 		Double.NaN, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, // Invalid numbers 
-		-(1.0 + Double.MIN_VALUE), Double.MIN_VALUE, // Smallest out of bound values
-		.0001, 0,001, 0.01, 0.1, 1.0 // Positive values
+		-1.00001, 0.00001, // Smallest (testable) out of bound values
+		.0001, 0.001, 0.01, 0.1, 1.0 // Positive values
 	}; 
 	
 	/**
@@ -45,8 +45,8 @@ public abstract class NumericalGeneratorConfigurationTest extends RandomGenerato
 	 */
 	public final static double[] VARIATION_UPPER_BOUND_INVALID_TEST_VALUES = { 
 		Double.NaN, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, // NaN and infinity
-		1.0 + Double.MIN_VALUE, -Double.MIN_VALUE, // Smallest out of bound values
-		-.0001, -0.001, -0.01, -0.1, -1.0 // Negative values 
+		-0.00001, 1.00001, // Smallest (testable) out of bound values
+		-0.0001, -0.001, -0.01, -0.1, -1.0 // Negative values 
 	};
 	
 	/**
@@ -54,9 +54,8 @@ public abstract class NumericalGeneratorConfigurationTest extends RandomGenerato
 	 * 
 	 * @param seed
 	 * @param naProbability
-	 * @param initiatior
-	 * @param variationUpperBound
 	 * @param variationLowerBound
+	 * @param variationUpperBound
 	 * @return
 	 */
 	protected abstract NumericalGeneratorConfiguration getNumericalConfiguration(
@@ -123,7 +122,6 @@ public abstract class NumericalGeneratorConfigurationTest extends RandomGenerato
 	public final void testVariationUpperBoundWithInvalidValues() {
 		for (int i = 0; i < VARIATION_UPPER_BOUND_INVALID_TEST_VALUES.length; i++) {
 			final double testValue = VARIATION_UPPER_BOUND_INVALID_TEST_VALUES[i];
-			getNumericalConfiguration(null, null, null, testValue);
 			Assert.assertThrows(IllegalArgumentException.class, () -> getNumericalConfiguration(null, null, null, testValue));
 		}
 	}

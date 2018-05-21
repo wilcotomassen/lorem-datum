@@ -73,6 +73,9 @@ public class FloatGeneratorConfiguration extends NumericalGeneratorConfiguration
 		 * @return updated Builder
 		 */
 		public T valueLowerBound(Float valueLowerBound) {
+			if (valueLowerBound != null && valueUpperBound != null && valueLowerBound >= valueUpperBound) {
+				throw new IllegalArgumentException("Value lower bound should be smaller than value upper bound");
+			}
 			this.valueLowerBound = valueLowerBound;
 			return self();
 		}
@@ -82,6 +85,9 @@ public class FloatGeneratorConfiguration extends NumericalGeneratorConfiguration
 		 * @return updated Builder
 		 */
 		public T valueUpperBound(Float valueUpperBound) {
+			if (valueLowerBound != null && valueUpperBound != null && valueUpperBound <= valueLowerBound) {
+				throw new IllegalArgumentException("Value upper bound should be greater than value lower bound");
+			}
 			this.valueUpperBound = valueUpperBound;
 			return self();
 		}
