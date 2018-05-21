@@ -41,15 +41,35 @@ public class FloatGeneratorConfigurationTest extends NumericalGeneratorConfigura
 	}
 	
 	@Test
+	public final void testInitiatorDefaultValue() {
+		Assert.assertEquals(getFloatConfiguration().initiator, FloatGeneratorConfiguration.INITIATOR_DEFAULT);
+	}
+	
+	@Test
+	public final void testInitiatorSetter() {
+		final float[] TEST_VALUES = {Float.MIN_VALUE, -2f, -1f, 0f, 1f, 2f, Float.MAX_VALUE};
+		for (int i = 0; i < TEST_VALUES.length; i++) {
+			final float testValue = TEST_VALUES[i];
+			
+			FloatGeneratorConfiguration configuration = FloatGeneratorConfiguration.builder()
+					.initiator(testValue)
+					.buildConfiguration();
+			
+			Assert.assertEquals(configuration.initiator, testValue);
+			
+		}
+	}
+	
+	@Test
 	public final void testValueLowerBoundDefaultValue() {
 		Assert.assertNull(getFloatConfiguration().valueLowerBound);
 	}
 	
 	@Test
 	public final void testValueLowerBoundSetter() {
-		final Float[] TEST_VALUES = {Float.MIN_VALUE, -2f, -1f, 0f, 1f, 2f, Float.MAX_VALUE};
+		final float[] TEST_VALUES = {Float.MIN_VALUE, -2f, -1f, 0f, 1f, 2f, Float.MAX_VALUE};
 		for (int i = 0; i < TEST_VALUES.length; i++) {
-			final Float testValue = TEST_VALUES[i];
+			final float testValue = TEST_VALUES[i];
 			
 			FloatGeneratorConfiguration configuration = FloatGeneratorConfiguration.builder()
 					.valueLowerBound(testValue)
@@ -67,9 +87,9 @@ public class FloatGeneratorConfigurationTest extends NumericalGeneratorConfigura
 	
 	@Test
 	public final void testValueUpperBoundSetter() {
-		final Float[] TEST_VALUES = {Float.MIN_VALUE, -2f, -1f, 0f, 1f, 2f, Float.MAX_VALUE};
+		final float[] TEST_VALUES = {Float.MIN_VALUE, -2f, -1f, 0f, 1f, 2f, Float.MAX_VALUE};
 		for (int i = 0; i < TEST_VALUES.length; i++) {
-			final Float testValue = TEST_VALUES[i];
+			final float testValue = TEST_VALUES[i];
 			
 			FloatGeneratorConfiguration configuration = FloatGeneratorConfiguration.builder()
 					.valueUpperBound(testValue)
