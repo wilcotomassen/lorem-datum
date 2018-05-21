@@ -6,6 +6,7 @@ public abstract class RandomGeneratorConfiguration extends GeneratorConfiguratio
 	 * Integer seed for the random number generator
 	 */
 	public final int seed;
+	public static final int SEED_DEFAULT = 0;
 	
 	/**
 	 * Probability of generating a N/A value [0.0, 1.0f] or
@@ -38,7 +39,7 @@ public abstract class RandomGeneratorConfiguration extends GeneratorConfiguratio
 	public static abstract class ConfigurationBuilder<T extends ConfigurationBuilder<T>>
 			extends GeneratorConfiguration.ConfigurationBuilder<T> {
 
-		private int seed = 100;
+		private int seed = SEED_DEFAULT;
 		private Float naProbability = null;
 		
 		protected abstract T self();

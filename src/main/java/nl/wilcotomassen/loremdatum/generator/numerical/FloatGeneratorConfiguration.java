@@ -10,13 +10,21 @@ public class FloatGeneratorConfiguration extends NumericalGeneratorConfiguration
 	 * Initial value to generate values from
 	 */
 	public final float initiator;
+	public static final float INITIATOR_DEFAULT = 100f; 
 	
 	/**
-	 * Absolute limits of generated values (inclusive), or null 
+	 * Absolute lower limit of generated value (inclusive), or null 
 	 * if without limits 
 	 */
 	public final Float valueLowerBound;
+	public static final Float VALUE_LOWER_BOUND_DEFAULT = null;
+	
+	/**
+	 * Absolute upper limit of generated value (inclusive), or null 
+	 * if without limits 
+	 */
 	public final Float valueUpperBound;
+	public static final Float VALUE_UPPER_BOUND_DEFAULT = null;
 	
 	/**
 	 * Instantiate GeneratorConfiguration
@@ -44,10 +52,10 @@ public class FloatGeneratorConfiguration extends NumericalGeneratorConfiguration
 	 */
 	public static abstract class ConfigurationBuilder<T extends ConfigurationBuilder<T>>
 			extends NumericalGeneratorConfiguration.ConfigurationBuilder<T> {
-
-		private float initiator = 100;
-		private Float valueLowerBound = null;
-		private Float valueUpperBound = null;
+		
+		private float initiator = INITIATOR_DEFAULT;
+		private Float valueLowerBound = VALUE_LOWER_BOUND_DEFAULT;
+		private Float valueUpperBound = VALUE_UPPER_BOUND_DEFAULT;
 		
 		protected abstract T self();
 		
