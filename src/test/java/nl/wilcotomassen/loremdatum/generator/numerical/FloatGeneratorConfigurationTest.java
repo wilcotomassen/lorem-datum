@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 public class FloatGeneratorConfigurationTest extends NumericalGeneratorConfigurationTest {
 	
 	@Override
-	protected NumericalGeneratorConfiguration getConfiguration(
+	protected NumericalGeneratorConfiguration getNumericalConfiguration(
 			Integer seed, 
 			Float naProbability, 
 			Double variationLowerBound,
@@ -30,5 +30,8 @@ public class FloatGeneratorConfigurationTest extends NumericalGeneratorConfigura
 		return configurationBuilder.buildConfiguration();
 		
 	}
+	
+	
+	
 
 }
