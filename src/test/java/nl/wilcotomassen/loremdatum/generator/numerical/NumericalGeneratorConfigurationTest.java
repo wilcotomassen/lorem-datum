@@ -126,4 +126,9 @@ public abstract class NumericalGeneratorConfigurationTest extends RandomGenerato
 		}
 	}
 	
+	@Test
+	public final void testBuilder() {
+		Assert.assertNotNull(NumericalGeneratorConfiguration.builder());
+	}
+	
 }

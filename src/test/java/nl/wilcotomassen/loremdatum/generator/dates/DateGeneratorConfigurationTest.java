@@ -1,5 +1,6 @@
 package nl.wilcotomassen.loremdatum.generator.dates;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -117,6 +118,31 @@ public class DateGeneratorConfigurationTest {
 			
 		}
 		
+	}
+	
+	@Test
+	public final void testBuilder() {
+		Assert.assertNotNull(DateGeneratorConfiguration.builder());
+	}
+	
+	@Test
+	public final void testBuild() {
+		DateGenerator generator = DateGeneratorConfiguration.builder()
+				.build();
+		Assert.assertNotNull(generator);
+		Assert.assertTrue(generator.getClass() == DateGenerator.class);
+	}
+	
+	@Test
+	public final void testIntervalUnits() {
+		Assert.assertEquals(IntervalUnit.YEAR.getCalendarUnit(), Calendar.YEAR);
+		Assert.assertEquals(IntervalUnit.MONTH.getCalendarUnit(), Calendar.MONTH);
+		Assert.assertEquals(IntervalUnit.WEEK.getCalendarUnit(), Calendar.WEEK_OF_YEAR);
+		Assert.assertEquals(IntervalUnit.DAY.getCalendarUnit(), Calendar.DAY_OF_YEAR);
+		Assert.assertEquals(IntervalUnit.HOUR.getCalendarUnit(), Calendar.HOUR_OF_DAY);
+		Assert.assertEquals(IntervalUnit.MINUTE.getCalendarUnit(), Calendar.MINUTE);
+		Assert.assertEquals(IntervalUnit.SECOND.getCalendarUnit(), Calendar.SECOND);
+		Assert.assertEquals(IntervalUnit.MILLISECOND.getCalendarUnit(), Calendar.MILLISECOND);
 	}
 	
 	/**

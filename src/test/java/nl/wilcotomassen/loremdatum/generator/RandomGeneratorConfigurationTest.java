@@ -79,4 +79,5 @@ public abstract class RandomGeneratorConfigurationTest {
 			Assert.assertThrows(IllegalArgumentException.class, () -> getRandomConfiguration(null, testValue));
 		}
 	}
+	
 }
