@@ -59,6 +59,7 @@ public class FloatGeneratorTest extends RandomGeneratorTest {
 			Assert.assertNotNull(value);
 			Assert.assertTrue(value >= lowerBound);
 			Assert.assertTrue(value <= upperBound);
+			Assert.assertEquals(value, generator.getCurrent());
 		}
 		
 	}
