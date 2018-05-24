@@ -26,13 +26,13 @@ public class DoubleGeneratorTest extends RandomGeneratorTest {
 	@Parameters("generationTestCount")
 	@Test
 	public void testBoundsPositiveMax(@Optional("100") int generationTestCount) {
-		testBounds(0f, Double.MAX_VALUE, generationTestCount);
+		testBounds(0, Double.MAX_VALUE, generationTestCount);
 	}
 	
 	@Parameters("generationTestCount")
 	@Test
 	public void testBoundsPositive(@Optional("100") int generationTestCount) {
-		testBounds(0f, 0.1f, generationTestCount);
+		testBounds(0, 0.1, generationTestCount);
 	}
 	
 	/**
