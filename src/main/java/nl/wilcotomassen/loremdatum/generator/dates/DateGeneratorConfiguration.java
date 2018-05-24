@@ -42,7 +42,7 @@ public class DateGeneratorConfiguration extends GeneratorConfiguration {
 	
 	/**
 	 * How many interval units should be between
-	 * each generated value
+	 * each generated value (should always be one or more)
 	 */
 	public final int intervalValue;
 	
@@ -97,11 +97,16 @@ public class DateGeneratorConfiguration extends GeneratorConfiguration {
 		}
 		
 		/**
-		 * @param intervalValue how many interval units should be between each generated value
+		 * @param testValue how many interval units should be between each generated value (1 or higher)
 		 * @return updated Builder
 		 */
-		public T intervalValue(int intervalValue) {
-			this.intervalValue = intervalValue;
+		public T intervalValue(int testValue) {
+			
+			if (testValue <= 0) {
+				throw new IllegalArgumentException("Interval value should be greater than zero");
+			}
+			
+			this.intervalValue = testValue;
 			return self();
 		}
 		
