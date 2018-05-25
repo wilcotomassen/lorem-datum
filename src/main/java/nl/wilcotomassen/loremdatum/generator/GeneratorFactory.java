@@ -9,11 +9,15 @@ public class GeneratorFactory {
 
 		if (configuration instanceof DateGeneratorConfiguration) {
 			return new DateGenerator((DateGeneratorConfiguration) configuration);
+		} else if (configuration instanceof DoubleGeneratorConfiguration) {
+			return new DoubleGenerator((DoubleGeneratorConfiguration) configuration);	
 		} else if (configuration instanceof FloatGeneratorConfiguration) {
 			return new FloatGenerator((FloatGeneratorConfiguration) configuration);
-		} /*else if (configuration instanceof IntegerGeneratorConfiguration) {
+		} else if (configuration instanceof IntegerGeneratorConfiguration) {
 			return new IntegerGenerator((IntegerGeneratorConfiguration) configuration);
-		} */ else {
+		} else if (configuration instanceof LongGeneratorConfiguration) {
+			return new LongGenerator((LongGeneratorConfiguration) configuration);
+		} else {
 			throw new Exception("Unrecognized configuration: " + configuration.getClass().getName());
 		}
 		
