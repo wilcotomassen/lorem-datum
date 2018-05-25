@@ -1,7 +1,6 @@
 package nl.wilcotomassen.loremdatum.generator.dates;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import nl.wilcotomassen.loremdatum.generator.Generator;
 import nl.wilcotomassen.loremdatum.generator.dates.DateGeneratorConfiguration.ConfigurationBuilder;
@@ -12,32 +11,30 @@ import nl.wilcotomassen.loremdatum.generator.dates.DateGeneratorConfiguration.Co
 public class DateGenerator extends Generator {
 	
 	/**
-	 * Current state
+	 * Current date/time
 	 */
-	private Calendar calendar;
+	private LocalDateTime currentDate;
 	
 	public DateGenerator(DateGeneratorConfiguration configuration) {
 		super(configuration);
 		
-		// Initialize current state as calendar
-		this.calendar = Calendar.getInstance();
-		this.calendar.setTime(configuration.start);
+		currentDate = configuration.start;
 		
 	}
 	
 	@Override
-	public Date getCurrent() {
-		return calendar.getTime();
+	public LocalDateTime getCurrent() {
+		return currentDate;
 	}
 	
 	@Override
-	public Date getNext() {
+	public LocalDateTime getNext() {
 		
 		//Get configuration
 		DateGeneratorConfiguration configuration = (DateGeneratorConfiguration) getConfiguration();
 		
 		// Add interval to current date
-		calendar.add(configuration.intervalUnit.getCalendarUnit(), configuration.intervalValue);
+		currentDate = currentDate.plus(configuration.intervalValue, configuration.intervalUnit.getCalendarUnit());
 		
 		// Return current date
 		return getCurrent();

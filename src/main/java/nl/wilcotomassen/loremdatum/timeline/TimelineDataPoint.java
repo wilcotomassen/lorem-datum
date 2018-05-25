@@ -1,16 +1,16 @@
 package nl.wilcotomassen.loremdatum.timeline;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * A single Data point for a TimelineSeries 
  */
 public class TimelineDataPoint {
 	
-	private Date date;
+	private LocalDateTime date;
 	private Object value;
 	
-	public TimelineDataPoint(Date date, Object value) {
+	public TimelineDataPoint(LocalDateTime date, Object value) {
 		this.date = date;
 		this.value = value;
 	}
@@ -20,7 +20,7 @@ public class TimelineDataPoint {
 	 * 
 	 * @return
 	 */
-	public Date getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 

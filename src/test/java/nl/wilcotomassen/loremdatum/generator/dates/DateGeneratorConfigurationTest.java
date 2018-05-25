@@ -1,8 +1,9 @@
 package nl.wilcotomassen.loremdatum.generator.dates;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.temporal.ChronoField;
+import java.time.temporal.ChronoUnit;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -20,29 +21,28 @@ public class DateGeneratorConfigurationTest {
 	@Test
 	public final void testStartDefaultValue() {
 		DateGeneratorConfiguration configuration = DateGeneratorConfiguration.builder().buildConfiguration();
-		assertDateEquals(configuration.start, new Date());
+		assertEqualLocalDateTime(configuration.start, LocalDateTime.now());
 	}
 	
 	@Test 
 	public final void testStartSetter() {
 		
-		final Date[] TEST_VALUES = {
-				new Date(),
-				new GregorianCalendar().getTime(),
-				new GregorianCalendar(0, 0, 0).getTime(),
-				new GregorianCalendar(2000, 1, 1).getTime(),
-				new GregorianCalendar(2018, 05, 18, 20, 57, 13).getTime(),
-				new GregorianCalendar(2093, 15, 18).getTime()
+		final LocalDateTime[] TEST_VALUES = {
+				LocalDateTime.now(),
+				LocalDateTime.of(0, 1, 1, 0, 0),
+				LocalDateTime.of(2000, 1, 1, 0, 0),
+				LocalDateTime.of(2018, 5, 18, 20, 57, 13),
+				LocalDateTime.of(2093, 12, 18, 0, 0)
 			};
 		
 		for (int i = 0; i < TEST_VALUES.length; i++) {
-			final Date testValue = TEST_VALUES[i];
+			final LocalDateTime testValue = TEST_VALUES[i];
 			
 			DateGeneratorConfiguration configuration = DateGeneratorConfiguration.builder()
 					.start(testValue)
 					.buildConfiguration();
 			
-			assertDateEquals(configuration.start, testValue);
+			Assert.assertEquals(configuration.start, testValue);
 			
 		}
 	}
@@ -135,36 +135,26 @@ public class DateGeneratorConfigurationTest {
 	
 	@Test
 	public final void testIntervalUnits() {
-		Assert.assertEquals(IntervalUnit.YEAR.getCalendarUnit(), Calendar.YEAR);
-		Assert.assertEquals(IntervalUnit.MONTH.getCalendarUnit(), Calendar.MONTH);
-		Assert.assertEquals(IntervalUnit.WEEK.getCalendarUnit(), Calendar.WEEK_OF_YEAR);
-		Assert.assertEquals(IntervalUnit.DAY.getCalendarUnit(), Calendar.DAY_OF_YEAR);
-		Assert.assertEquals(IntervalUnit.HOUR.getCalendarUnit(), Calendar.HOUR_OF_DAY);
-		Assert.assertEquals(IntervalUnit.MINUTE.getCalendarUnit(), Calendar.MINUTE);
-		Assert.assertEquals(IntervalUnit.SECOND.getCalendarUnit(), Calendar.SECOND);
-		Assert.assertEquals(IntervalUnit.MILLISECOND.getCalendarUnit(), Calendar.MILLISECOND);
+		Assert.assertEquals(IntervalUnit.YEAR.getCalendarUnit(), ChronoUnit.YEARS);
+		Assert.assertEquals(IntervalUnit.MONTH.getCalendarUnit(), ChronoUnit.MONTHS);
+		Assert.assertEquals(IntervalUnit.WEEK.getCalendarUnit(), ChronoUnit.WEEKS);
+		Assert.assertEquals(IntervalUnit.DAY.getCalendarUnit(), ChronoUnit.DAYS);
+		Assert.assertEquals(IntervalUnit.HOUR.getCalendarUnit(), ChronoUnit.HOURS);
+		Assert.assertEquals(IntervalUnit.MINUTE.getCalendarUnit(), ChronoUnit.MINUTES);
+		Assert.assertEquals(IntervalUnit.SECOND.getCalendarUnit(), ChronoUnit.SECONDS);
+		Assert.assertEquals(IntervalUnit.MILLISECOND.getCalendarUnit(), ChronoUnit.MILLIS);
 	}
 	
-	/**
-	 * Assert that A and B are either both null, or no further apart
-	 * than {@link TEST_DELTA_DATE_MS}
-	 * 
-	 * @param a
-	 * @param b
-	 */
-	private static void assertDateEquals(Date a, Date b) {
-
-		if (a != null && b != null) {
-			
-			long deltaMs = Math.abs(a.getTime() - b.getTime());
-			Assert.assertTrue(deltaMs <= TEST_DELTA_DATE_MS, "Dates are not equal (" + deltaMs + "ms difference)");
-			
-		} else {
-			// Assume both are null
-			Assert.assertEquals(a, b);
-		}
+	private final void assertEqualLocalDateTime(LocalDateTime a, LocalDateTime b) {
 		
+		// Compare up to seconds
+		Assert.assertEquals(a.toEpochSecond(ZoneOffset.UTC), b.toEpochSecond(ZoneOffset.UTC));
+		
+		// Compare up to TEST_DELTA_DATE_MS ms
+		int msA = a.get(ChronoField.MILLI_OF_DAY);
+		int msB = b.get(ChronoField.MILLI_OF_DAY);
+		Assert.assertTrue(Math.abs(msA - msB) <= TEST_DELTA_DATE_MS);
+			
 	}
 	
-
 }
