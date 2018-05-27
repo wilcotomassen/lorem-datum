@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="CategoricalGeneratorTests">
+
+	<!-- How many generated values should be checked -->
+	<parameter name="generationTestCount"  value="10000" />
+	
+	<test name="Categorical Generator tests">
+		<packages>
+			<package name="nl.wilcotomassen.loremdatum.generator.categorical.*" />
+		</packages>
+	</test>
+
+</suite>

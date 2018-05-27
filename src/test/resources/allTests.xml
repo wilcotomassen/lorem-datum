@@ -3,6 +3,7 @@
 
 <suite name="All tests">
     <suite-files>
+    	<suite-file path="categoricalGeneratorTests.xml" />
         <suite-file path="dateGeneratorTests.xml" />
         <suite-file path="genericGeneratorTests.xml" />
         <suite-file path="numericalGeneratorTests.xml" />
