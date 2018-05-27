@@ -1,8 +1,8 @@
 # Lorem datum
 
-Lorem datum is a pseudo-random data generator which can be used to simulate some
-real-life data. It provides some nice features that make it easier than rolling
-your own data generation functions.
+Lorem datum is a pseudo-random generator based data generation suite, which can 
+be used to simulate some real-life data. It provides some nice features that make 
+it easier than rolling your own data generation functions.
 
 ## Features
 
