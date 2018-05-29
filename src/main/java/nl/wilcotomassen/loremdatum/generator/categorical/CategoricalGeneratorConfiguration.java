@@ -1,6 +1,7 @@
 package nl.wilcotomassen.loremdatum.generator.categorical;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import nl.wilcotomassen.loremdatum.generator.RandomGeneratorConfiguration;
 
@@ -111,6 +112,23 @@ public class CategoricalGeneratorConfiguration extends RandomGeneratorConfigurat
 
 		public Object getValue() {
 			return value;
+		}
+		
+		public boolean equals(Object o) {
+			if (this == o) {
+				return true;
+			}
+			if (o == null) {
+		        return false;
+			}
+			if (getClass() != o.getClass()) {
+		        return false;
+			}
+			
+			Item oItem = (Item) o;
+			return Objects.equals(probability, oItem.probability)
+		            && Objects.equals(value, oItem.value);
+			
 		}
 		
 	}
