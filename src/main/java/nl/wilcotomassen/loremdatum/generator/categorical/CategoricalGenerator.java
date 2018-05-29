@@ -1,10 +1,9 @@
 package nl.wilcotomassen.loremdatum.generator.categorical;
 
-import java.util.Map;
-
 import nl.wilcotomassen.loremdatum.generator.RandomGenerator;
 import nl.wilcotomassen.loremdatum.generator.RandomGeneratorConfiguration;
 import nl.wilcotomassen.loremdatum.generator.categorical.CategoricalGeneratorConfiguration.ConfigurationBuilder;
+import nl.wilcotomassen.loremdatum.generator.categorical.CategoricalGeneratorConfiguration.Item;
 
 public class CategoricalGenerator extends RandomGenerator {
 	
@@ -35,10 +34,10 @@ public class CategoricalGenerator extends RandomGenerator {
 			// Find item in probability
 			double generatedProbability = random.nextUniform(0, 1);
 			double itemProbability = 0;
-			for (Map.Entry<Double, Object> entry : configuration.probabilityMap.entrySet()) {
-				itemProbability += entry.getKey();
+			for (Item item: configuration.probabilityMap) {
+				itemProbability += item.getProbability();
 				if (generatedProbability < itemProbability) {
-					currentValue = entry.getValue();
+					currentValue = item.getValue();
 					break;
 				}
 			}

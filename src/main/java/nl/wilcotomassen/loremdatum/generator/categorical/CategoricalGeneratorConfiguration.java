@@ -1,7 +1,6 @@
 package nl.wilcotomassen.loremdatum.generator.categorical;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 
 import nl.wilcotomassen.loremdatum.generator.RandomGeneratorConfiguration;
 
@@ -12,24 +11,24 @@ public class CategoricalGeneratorConfiguration extends RandomGeneratorConfigurat
 	 * range is not predetermined, but the probability of finding item N is the probability of item N 
 	 * over the sum of all item probabilities in the set. 
 	 */
-	public final Map<Double, Object> items;
+	public final ArrayList<Item> items;
 	
 	/**
 	 * Map of items in the category together with their normalized probabilities [0.0, 1.0]. The probability 
 	 * of finding item N is the normalized probability of item N over 1.0
 	 */
-	public final Map<Double, Object> probabilityMap;
-
+	public final ArrayList<Item> probabilityMap;
+	
 	protected CategoricalGeneratorConfiguration(ConfigurationBuilder<?> builder) {
 		super(builder);
-		items = new HashMap<Double, Object>(builder.items);
+		items = new ArrayList<Item>(builder.items);
 		
 		// Construct probability map
-		double probabilitySum = items.keySet().stream().mapToDouble(Number::doubleValue).sum();
-		probabilityMap = new HashMap<Double, Object>();
-		for (Map.Entry<Double, Object> entry : items.entrySet()) {
-			double normalizedProbability = entry.getKey() / probabilitySum;
-			probabilityMap.put(normalizedProbability, entry.getValue());
+		double probabilitySum = items.stream().mapToDouble(Item::getProbability).sum();
+		probabilityMap = new ArrayList<Item>();
+		for (Item item: items) {
+			double normalizedProbability = item.getProbability() / probabilitySum;
+			probabilityMap.add(new Item(normalizedProbability, item.getValue()));
 		}
 		
 	}
@@ -49,7 +48,7 @@ public class CategoricalGeneratorConfiguration extends RandomGeneratorConfigurat
 	public static abstract class ConfigurationBuilder<T extends ConfigurationBuilder<T>>
 			extends RandomGeneratorConfiguration.ConfigurationBuilder<T> {
 
-		private Map<Double, Object> items = new HashMap<Double, Object>();
+		private ArrayList<Item> items = new ArrayList<Item>();
 
 		protected abstract T self();
 		
@@ -57,8 +56,8 @@ public class CategoricalGeneratorConfiguration extends RandomGeneratorConfigurat
 		 * @param trueProbability Probability of generating a true value [0.0, 1.0f]
 		 * @return updated Builder
 		 */
-		public T addItem(double probability, Object item) {
-			items.put(probability, item);
+		public T addItem(double probability, Object value) {
+			items.add(new Item(probability, value));
 			return self();
 		}
 		
@@ -93,5 +92,27 @@ public class CategoricalGeneratorConfiguration extends RandomGeneratorConfigurat
 		
 	}
 	
+	/**
+	 * Small class that pairs an Object with a probability
+	 */
+	public static class Item {
+		
+		private double probability;
+		private Object value;
+		
+		public Item(double probability, Object item) {
+			this.probability = probability;
+			this.value = item;
+		}
+
+		public double getProbability() {
+			return probability;
+		}
+
+		public Object getValue() {
+			return value;
+		}
+		
+	}
 
 }
