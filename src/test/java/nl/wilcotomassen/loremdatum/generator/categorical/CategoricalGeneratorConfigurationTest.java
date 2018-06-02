@@ -25,7 +25,7 @@ public class CategoricalGeneratorConfigurationTest extends RandomGeneratorConfig
 	}
 	
 	@Test
-	public final void testItemSetterWith() {
+	public final void testItemSetter() {
 		
 		final Object[] TEST_VALUES = { 1f, "Hello world", 132, 3002L};
 		final double[] TEST_PROBABILITIES = {13, 93, 102, 34};
