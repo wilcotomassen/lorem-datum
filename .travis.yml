@@ -2,12 +2,9 @@ language: java
 sudo: false
 script: mvn clean verify package
 deploy:
-	provider: releases
-    api_key:
-        secure: $API_KEY
-    file: 
-        /home/travis/build/wilcotomassen/lorem-datum/target/loremdatum-*.jar
-    skip_cleanup: true
-    on:
-        repo: $REPO_PATH
-        tags: true
+  provider: releases
+  api_key: GH_OAUTH_KEY
+  file: "/home/travis/build/wilcotomassen/lorem-datum/target/loremdatum-*.jar"
+  skip_cleanup: true
+  on:
+    tags: true
