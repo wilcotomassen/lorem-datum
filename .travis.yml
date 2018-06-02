@@ -1,1 +1,12 @@
 language: java
+sudo: false
+before_deploy:
+  - export JAR_FILE=$(ls target/loremdatum-*.jar)
+script: mvn verify
+deploy:
+  provider: releases
+  api_key: $GH_OAUTH_KEY
+  file: "${JAR_FILE}"
+  skip_cleanup: true
+  on:
+    tags: true
