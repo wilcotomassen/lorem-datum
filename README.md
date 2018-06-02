@@ -8,7 +8,7 @@ https://travis-ci.com/wilcotomassen/lorem-datum.svg?branch=master
 
 ## Features
 
-* Set the amount of variation between consequetive data points
+* Set the amount of variation between consecutive data points
 * Set the probability of NA values (or disallow NA values)
 * Set hard lower/upper bounds for generated values
 * Ability to provide the PRNG seed, so that data generation is repeatable
@@ -21,6 +21,7 @@ https://travis-ci.com/wilcotomassen/lorem-datum.svg?branch=master
   
 * Categorical:
   * Boolean
+  * Categorical (any Object)
   
 * Numerical:
   * Integer
