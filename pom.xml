@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>nl.wilcotomassen</groupId>
 	<artifactId>loremdatum</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>Lorem datum</name>
 	<description>Random data generator</description>
 	<build>
