@@ -4,7 +4,20 @@ Lorem datum is a pseudo-random generator based data generation suite, which can
 be used to simulate some real-life data. It provides some nice features that make 
 it easier than rolling your own data generation functions.
 
-[![Build Status](https://travis-ci.com/wilcotomassen/lorem-datum.svg?branch=master)](https://travis-ci.com/wilcotomassen/lorem-datum)
+## Build status
+
+<table>
+  <tbody>
+    <tr>
+      <td>Master: </td>
+      <td><a href="https://travis-ci.com/wilcotomassen/lorem-datum"><img src="https://travis-ci.com/wilcotomassen/lorem-datum.svg?branch=master" alt="Build Status"/></a></td>
+    </tr>
+    <tr>
+      <td>Develop: </td>
+      <td><a href="https://travis-ci.com/wilcotomassen/lorem-datum"><img src="https://travis-ci.com/wilcotomassen/lorem-datum.svg?branch=develop" alt="Build Status"/></a></td>
+    </tr>
+  </tbody>
+</table>
 
 ## Features
 
