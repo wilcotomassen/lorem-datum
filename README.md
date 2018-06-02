@@ -10,11 +10,11 @@ it easier than rolling your own data generation functions.
   <tbody>
     <tr>
       <td>Master: </td>
-      <td>[![Build Status](https://travis-ci.com/wilcotomassen/lorem-datum.svg?branch=master)](https://travis-ci.com/wilcotomassen/lorem-datum)</td>
+      <td><a href="https://travis-ci.com/wilcotomassen/lorem-datum"><img src="https://travis-ci.com/wilcotomassen/lorem-datum.svg?branch=master" alt="Build Status"/></a></td>
     </tr>
     <tr>
       <td>Develop: </td>
-      <td>[![Build Status](https://travis-ci.com/wilcotomassen/lorem-datum.svg?branch=develop)](https://travis-ci.com/wilcotomassen/lorem-datum)</td>
+      <td><a href="https://travis-ci.com/wilcotomassen/lorem-datum"><img src="https://travis-ci.com/wilcotomassen/lorem-datum.svg?branch=develop" alt="Build Status"/></a></td>
     </tr>
   </tbody>
 </table>
