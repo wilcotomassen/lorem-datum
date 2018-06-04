@@ -10,11 +10,11 @@ it easier than rolling your own data generation functions.
   <tbody>
     <tr>
       <td>Master: </td>
-      <td><a href="https://travis-ci.com/wilcotomassen/lorem-datum"><img src="https://travis-ci.com/wilcotomassen/lorem-datum.svg?branch=master" alt="Build Status"/></a></td>
+      <td><a href="https://travis-ci.com/wilcotomassen/lorem-datum-core"><img src="https://travis-ci.com/wilcotomassen/lorem-datum-core.svg?branch=master" alt="Build Status"/></a></td>
     </tr>
     <tr>
       <td>Develop: </td>
-      <td><a href="https://travis-ci.com/wilcotomassen/lorem-datum"><img src="https://travis-ci.com/wilcotomassen/lorem-datum.svg?branch=develop" alt="Build Status"/></a></td>
+      <td><a href="https://travis-ci.com/wilcotomassen/lorem-datum-core"><img src="https://travis-ci.com/wilcotomassen/lorem-datum-core.svg?branch=develop" alt="Build Status"/></a></td>
     </tr>
   </tbody>
 </table>
@@ -42,6 +42,10 @@ it easier than rolling your own data generation functions.
   * Double
   * Long
   
+# Documentation
+
+Documentation (javadocs) can found on the [GitHub Pages website](https://wilcotomassen.github.io/lorem-datum-core/)
+
 # Testing
 
 Unit tests are provided in the (/src/test) directory, using [TestNG](http://testng.org).
