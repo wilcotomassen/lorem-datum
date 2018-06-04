@@ -9,11 +9,11 @@ it easier than rolling your own data generation functions.
 <table>
   <tbody>
     <tr>
-      <td>[Master](https://github.com/wilcotomassen/lorem-datum-core/tree/master): </td>
+      <td><a href="https://github.com/wilcotomassen/lorem-datum-core/tree/master">Master</a>:</td>
       <td><a href="https://travis-ci.com/wilcotomassen/lorem-datum-core"><img src="https://travis-ci.com/wilcotomassen/lorem-datum-core.svg?branch=master" alt="Build Status"/></a></td>
     </tr>
     <tr>
-      <td>[Develop](https://github.com/wilcotomassen/lorem-datum-core/tree/develop): </td>
+      <td><a href="https://github.com/wilcotomassen/lorem-datum-core/tree/develop">Develop</a>:</td>
       <td><a href="https://travis-ci.com/wilcotomassen/lorem-datum-core"><img src="https://travis-ci.com/wilcotomassen/lorem-datum-core.svg?branch=develop" alt="Build Status"/></a></td>
     </tr>
   </tbody>
