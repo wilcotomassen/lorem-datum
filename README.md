@@ -4,16 +4,16 @@ Lorem datum is a pseudo-random generator based data generation suite, which can
 be used to simulate some real-life data. It provides some nice features that make 
 it easier than rolling your own data generation functions.
 
-## Build status
+**Build status**
 
 <table>
   <tbody>
     <tr>
-      <td>Master: </td>
+      <td>[Master](https://github.com/wilcotomassen/lorem-datum-core/tree/master): </td>
       <td><a href="https://travis-ci.com/wilcotomassen/lorem-datum-core"><img src="https://travis-ci.com/wilcotomassen/lorem-datum-core.svg?branch=master" alt="Build Status"/></a></td>
     </tr>
     <tr>
-      <td>Develop: </td>
+      <td>[Develop](https://github.com/wilcotomassen/lorem-datum-core/tree/develop): </td>
       <td><a href="https://travis-ci.com/wilcotomassen/lorem-datum-core"><img src="https://travis-ci.com/wilcotomassen/lorem-datum-core.svg?branch=develop" alt="Build Status"/></a></td>
     </tr>
   </tbody>
@@ -42,11 +42,11 @@ it easier than rolling your own data generation functions.
   * Double
   * Long
   
-# Documentation
+## Documentation
 
 Documentation (javadocs) can found on the [GitHub Pages website](https://wilcotomassen.github.io/lorem-datum-core/)
 
-# Testing
+## Testing
 
 Unit tests are provided in the (/src/test) directory, using [TestNG](http://testng.org).
 They follow the same package structure and all the code on the generators should
