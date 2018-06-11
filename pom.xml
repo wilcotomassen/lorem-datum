@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>nl.wilcotomassen.loremdatum</groupId>
 	<artifactId>core</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>Lorem datum core</name>
 	<description>Core project of the pseudo random data generator</description>
 	<build>
@@ -84,7 +84,7 @@
 		<url>https://github.com/wilcotomassen/lorem-datum-core</url>
 		<connection>scm:git:git://github.com:wilcotomassen/lorem-datum-core.git</connection>
 		<developerConnection>scm:git:git@github.com:wilcotomassen/lorem-datum-core.git</developerConnection>
-		<tag>core-1.0.0</tag>
+		<tag>HEAD</tag>
 	</scm>
 	<profiles>
 		<profile>
