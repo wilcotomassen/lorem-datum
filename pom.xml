@@ -6,7 +6,7 @@
 	<artifactId>core</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>Lorem datum core</name>
-	<description>Core project of the random data generator</description>
+	<description>Core project of the pseudo random data generator</description>
 	<build>
 		<plugins>
 			<plugin>
@@ -75,6 +75,13 @@
 			<url>http://www.opensource.org/licenses/mit-license.php</url>
 		</license>
 	</licenses>
+	<developers>
+		<developer>
+			<name>Wilco Tomassen</name>
+			<email>wilco@wilcotomassen.nl</email>
+			<url>http://www.example.com/jdoe</url>
+		</developer>
+	</developers>
 	<scm>
 		<url>https://github.com/wilcotomassen/lorem-datum-core</url>
 		<connection>scm:git:git://github.com:wilcotomassen/lorem-datum-core.git</connection>
@@ -141,11 +148,11 @@
 	</profiles>
 	<distributionManagement>
 		<snapshotRepository>
-			<id>ossrh</id>
+			<id>sonatype-nexus-snapshots</id>
 			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
 		</snapshotRepository>
 		<repository>
-			<id>ossrh</id>
+			<id>sonatype-nexus-staging</id>
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
 		</repository>
 	</distributionManagement>
